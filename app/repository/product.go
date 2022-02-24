@@ -7,7 +7,7 @@ import (
 
 var ErrProductNotFound = errors.New("product not found")
 
-type VideoRepository interface {
+type ProductRepository interface {
 	Get(id int) (*entity.Product, error)
 	GetAll() ([]*entity.Product, error)
 	Create(in entity.Product) (*entity.Product, error)

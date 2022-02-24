@@ -5,7 +5,7 @@ import (
 )
 
 type Config struct {
-	ServiceName string `envconfig:"SERVICE_NAME" default:"video-rest-api"`
+	ServiceName string `envconfig:"SERVICE_NAME" default:"padiplace-rest-api"`
 	Environment string `envconfig:"ENV" default:"dev"`
 	Port        int    `envconfig:"PORT" default:"8080" required:"true"`
 

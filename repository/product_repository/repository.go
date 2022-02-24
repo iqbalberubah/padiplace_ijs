@@ -14,7 +14,7 @@ type repository struct {
 	tableName string
 }
 
-func NewProduct(db *gorm.DB) irepository.VideoRepository {
+func NewProduct(db *gorm.DB) irepository.ProductRepository {
 	return &repository{db, "product"}
 }
 
