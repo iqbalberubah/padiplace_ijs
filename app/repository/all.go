@@ -14,3 +14,13 @@ type ProductRepository interface {
 	Update(in entity.Product) (*entity.Product, error)
 	Delete(id int) error
 }
+
+var ErrPONotFound = errors.New("po not found")
+
+type PORepository interface {
+	Get(id int) (*entity.PO, error)
+	Create(in entity.PO) (*entity.PO, error)
+	Update(in entity.PO) (*entity.PO, error)
+	Delete(id int) error
+	// GetAll() ([]*entity.PO, error)
+}

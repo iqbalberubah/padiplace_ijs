@@ -16,3 +16,23 @@ type Product struct {
 	Img4               string `json:"img_4"`
 	Img5               string `json:"img_5"`
 }
+
+type PO struct {
+	IdPO        int    `json:"id_po"`
+	NomerPO     string `json:"nomer_po"`
+	Jumlah      string `json:"jumlah"`
+	DateCreate  string `json:"date_create"`
+	IdClient    int    `json:"id_client"`
+	Status      int    `json:"status"`
+	Total       string `json:"total"`
+	HargaSatuan string `json:"harga_satuan"`
+	T           int    `json:"t"`
+	Product     string `json:"product"`
+	Box         string `json:"box"`
+	CP          string `json:"cp"`
+	STK         int    `json:"stk"`
+	Id_Peternak string `json:"id_peternak"`
+	Numberpo    int    `json:"numberpo"`
+	Popro       int    `json:"popro"`
+	Popro1      int    `json:"popro1"`
+}
