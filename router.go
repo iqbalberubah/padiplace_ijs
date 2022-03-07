@@ -18,11 +18,14 @@ func initializeRouter() {
 	r.HandleFunc("/api/product/{id}", DeleteProduct).Methods("DELETE")
 
 	//peternak
-	// r.HandleFunc("/api/peternak", GetPeternaks).Methods("GET")
-	// r.HandleFunc("/api/peternak/{id}", GetPeternak).Methods("GET")
 	r.HandleFunc("/api/login", Login).Methods("POST")
-	// r.HandleFunc("/api/peternak/{id}", UpdatePeternak).Methods("PUT")
-	// r.HandleFunc("/api/peternak/{id}", DeletePeternak).Methods("DELETE")
+
+	//po
+	r.HandleFunc("/api/history", GetHistoryPO).Methods("POST")
+	r.HandleFunc("/api/history/detail", GetPO).Methods("POST")
+
+	//balance
+	r.HandleFunc("/api/balance", GetBalance).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":8080",
 		handlers.CORS(handlers.AllowedHeaders([]string{

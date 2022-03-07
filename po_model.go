@@ -27,6 +27,12 @@ type SuccesPO struct {
 	Data            PO     `json:"data"`
 }
 
+type SuccesPOData struct {
+	ResponseCode    int    `json:"response_code"`
+	ResponseMessage string `json:"response_message"`
+	Data            []PO   `json:"data"`
+}
+
 type ErrorPO struct {
 	ResponseCode    int    `json:"response_code"`
 	ResponseMessage string `json:"response_message"`
