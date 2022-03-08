@@ -1,4 +1,4 @@
-package main
+package entity
 
 type PO struct {
 	// gorm.Model

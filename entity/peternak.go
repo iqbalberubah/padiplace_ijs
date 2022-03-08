@@ -1,4 +1,4 @@
-package main
+package entity
 
 type Peternak struct {
 	// gorm.Model
