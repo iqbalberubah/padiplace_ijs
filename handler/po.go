@@ -13,9 +13,9 @@ func GetHistoryPO(w http.ResponseWriter, r *http.Request) {
 	var po []e.PO
 	json.NewDecoder(r.Body).Decode(&user)
 	if result := d.DB.Table("po").Where("id_peternak = ?", user.IdPeternak).Find(&po); result.Error != nil {
-		json.NewEncoder(w).Encode(e.ErrorPO{404, "PO tidak ditemukan"})
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "PO tidak ditemukan"})
 	} else {
-		json.NewEncoder(w).Encode(e.SuccesPOData{0, "Succes", po})
+		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", po})
 	}
 }
 
@@ -24,8 +24,8 @@ func GetPO(w http.ResponseWriter, r *http.Request) {
 	var user e.PO
 	json.NewDecoder(r.Body).Decode(&user)
 	if result := d.DB.Table("po").Where("id_po = ?", user.IdPo).First(&user); result.Error != nil {
-		json.NewEncoder(w).Encode(e.ErrorPO{404, "PO tidak ditemukan"})
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "PO tidak ditemukan"})
 	} else {
-		json.NewEncoder(w).Encode(e.SuccesPO{0, "Succes", user})
+		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
 	}
 }

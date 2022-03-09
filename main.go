@@ -1,11 +1,11 @@
 package main
 
 import (
-	"padiplace_ijs/database"
-	"padiplace_ijs/router"
+	d "padiplace_ijs/database"
+	r "padiplace_ijs/router"
 )
 
 func main() {
-	database.InitialMigration()
-	router.InitializeRouter()
+	d.InitialMigration()
+	r.InitializeRouter()
 }

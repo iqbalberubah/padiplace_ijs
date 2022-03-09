@@ -13,15 +13,18 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var users []e.Product
 	d.DB.Table("product").Find(&users)
-	json.NewEncoder(w).Encode(users)
+	json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", users})
 }
 
 func GetProduct(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	var user e.Product
-	d.DB.Table("product").First(&user, params["id"])
-	json.NewEncoder(w).Encode(user)
+	if result := d.DB.Table("product").First(&user, params["id"]); result.Error != nil {
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Product tidak ditemukan"})
+	} else {
+		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
+	}
 }
 
 func CreateProduct(w http.ResponseWriter, r *http.Request) {

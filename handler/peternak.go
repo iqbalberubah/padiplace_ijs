@@ -12,8 +12,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	var user e.Peternak
 	json.NewDecoder(r.Body).Decode(&user)
 	if result := d.DB.Table("peternak").Where("tlp_peternak = ? AND password1_user = ?", user.TlpPeternak, user.Password1User).First(&user); result.Error != nil {
-		json.NewEncoder(w).Encode(e.ErrorPeternak{404, "User tidak ditemukan"})
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "User tidak ditemukan"})
 	} else {
-		json.NewEncoder(w).Encode(e.SuccesPeternak{0, "Succes", user})
+		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
 	}
 }

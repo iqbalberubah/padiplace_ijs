@@ -12,8 +12,8 @@ func GetBalance(w http.ResponseWriter, r *http.Request) {
 	var user e.Balance
 	json.NewDecoder(r.Body).Decode(&user)
 	if result := d.DB.Table("balance").Where("id_peternak = ?", user.IdPeternak).First(&user); result.Error != nil {
-		json.NewEncoder(w).Encode(e.ErrorBalance{404, "User tidak ditemukan"})
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "User tidak ditemukan"})
 	} else {
-		json.NewEncoder(w).Encode(e.SuccesBalance{0, "Succes", user})
+		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
 	}
 }

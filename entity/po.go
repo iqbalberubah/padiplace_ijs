@@ -20,20 +20,3 @@ type PO struct {
 	Popro       int    `json:"popro"`
 	Popro1      int    `json:"popro1"`
 }
-
-type SuccesPO struct {
-	ResponseCode    int    `json:"response_code"`
-	ResponseMessage string `json:"response_message"`
-	Data            PO     `json:"data"`
-}
-
-type SuccesPOData struct {
-	ResponseCode    int    `json:"response_code"`
-	ResponseMessage string `json:"response_message"`
-	Data            []PO   `json:"data"`
-}
-
-type ErrorPO struct {
-	ResponseCode    int    `json:"response_code"`
-	ResponseMessage string `json:"response_message"`
-}
