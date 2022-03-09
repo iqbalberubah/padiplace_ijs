@@ -22,8 +22,8 @@ func InitializeRouter() {
 	r.HandleFunc("/api/login", h.Login).Methods("POST")
 
 	//po
-	r.HandleFunc("/api/history", h.GetHistoryPO).Methods("POST")
-	r.HandleFunc("/api/history/detail", h.GetPO).Methods("POST")
+	r.HandleFunc("/api/po", h.HistoryPO).Methods("POST")
+	r.HandleFunc("/api/po/detail", h.DetailPO).Methods("POST")
 
 	//balance
 	r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")

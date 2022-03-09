@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"net/http"
 	d "padiplace_ijs/database"
 	e "padiplace_ijs/entity"
@@ -9,11 +10,16 @@ import (
 
 func GetBalance(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var user e.Balance
-	json.NewDecoder(r.Body).Decode(&user)
-	if result := d.DB.Table("balance").Where("id_peternak = ?", user.IdPeternak).First(&user); result.Error != nil {
-		json.NewEncoder(w).Encode(e.ErrorResponse{404, "User tidak ditemukan"})
+	var balance e.Balance
+	var body map[string]interface{}
+	buffer, _ := ioutil.ReadAll(r.Body)
+	if err := json.Unmarshal(buffer, &body); err != nil {
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Request body tidak sesuai"})
+		return
+	}
+	if result := d.DB.Table("balance").Where("id_peternak = ?", body["id_peternak"]).First(&balance); result.Error != nil {
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Data tidak ditemukan"})
 	} else {
-		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
+		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", balance})
 	}
 }
