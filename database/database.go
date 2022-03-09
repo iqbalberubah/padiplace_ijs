@@ -3,7 +3,6 @@ package database
 import (
 	"fmt"
 
-	e "padiplace_ijs/entity"
 	v "padiplace_ijs/vars"
 
 	"gorm.io/driver/mysql"
@@ -20,7 +19,4 @@ func InitialMigration() {
 		fmt.Println(err.Error())
 		panic("Can't connect to DB!")
 	}
-
-	DB.AutoMigrate(&e.Product{})
-	DB.AutoMigrate(&e.Peternak{})
 }

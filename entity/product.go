@@ -1,7 +1,6 @@
 package entity
 
 type Product struct {
-	// gorm.Model
 	IdProduct          int    `json:"id_product"`
 	NamaProduct        string `json:"nama_product"`
 	HargaSatuan        string `json:"harga_satuan"`
