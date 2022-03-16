@@ -20,6 +20,8 @@ func InitializeRouter() {
 
 	//peternak
 	r.HandleFunc("/api/login", h.Login).Methods("POST")
+	r.HandleFunc("/api/register", h.Register).Methods("POST")
+	r.HandleFunc("/api/peternak/{id}", h.UpdateTokenFcm).Methods("PUT")
 
 	//po
 	r.HandleFunc("/api/po", h.HistoryPO).Methods("POST")

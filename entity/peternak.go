@@ -11,4 +11,5 @@ type Peternak struct {
 	TlpPeternak    string `json:"tlp_peternak"`
 	IsActive       int    `json:"is_active"`
 	Password1User  string `json:"password1_user"`
+	TokenFcm       string `json:"token_fcm"`
 }

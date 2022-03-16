@@ -8,11 +8,11 @@ type Product struct {
 	DeskripsiProduct   string `json:"deskripsi_product"`
 	BeratProduct       int    `json:"berat_product"`
 	ManfaatProduct     string `json:"manfaat_product"`
-	DateCreate         bool   `json:"date_create"`
-	PenyimpananProduct bool   `json:"penyimpanan_product"`
-	Img1               bool   `json:"img_1"`
-	Img2               bool   `json:"img_2"`
-	Img3               bool   `json:"img_3"`
-	Img4               bool   `json:"img_4"`
-	Img5               bool   `json:"img_5"`
+	DateCreate         string `json:"date_create"`
+	PenyimpananProduct string `json:"penyimpanan_product"`
+	Img_1              string `json:"img_1"`
+	Img_2              string `json:"img_2"`
+	Img_3              string `json:"img_3"`
+	Img_4              string `json:"img_4"`
+	Img_5              string `json:"img_5"`
 }
