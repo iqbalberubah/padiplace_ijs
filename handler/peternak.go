@@ -8,6 +8,7 @@ import (
 	e "padiplace_ijs/entity"
 
 	"github.com/gorilla/mux"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
@@ -19,10 +20,15 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Request body tidak sesuai"})
 		return
 	}
-	if result := d.DB.Table("peternak").Where("tlp_peternak = ? AND password1_user = ?", body["tlp_peternak"], body["password1_user"]).First(&user); result.Error != nil {
+	if result := d.DB.Table("peternak").Where("tlp_peternak = ?", body["tlp_peternak"]).First(&user); result.Error != nil {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "User tidak ditemukan"})
 	} else {
-		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
+		match := PasswordVerify(body["password1_user"].(string), user.Password1User)
+		if match {
+			json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
+		} else {
+			json.NewEncoder(w).Encode(e.ErrorResponse{404, "Password tidak sesuai"})
+		}
 	}
 }
 
@@ -46,4 +52,14 @@ func UpdateTokenFcm(w http.ResponseWriter, r *http.Request) {
 	json.NewDecoder(r.Body).Decode(&peternak)
 	d.DB.Table("peternak").Where("tlp_peternak = ?", params["id"]).Save(&peternak)
 	json.NewEncoder(w).Encode(peternak)
+}
+
+func PasswordVerify(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
+}
+
+func PasswordHash(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes), err
 }
