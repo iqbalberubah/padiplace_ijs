@@ -36,3 +36,11 @@ func DetailPO(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", po})
 	}
 }
+
+func CreatePO(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var po e.PO
+	json.NewDecoder(r.Body).Decode(&po)
+	d.DB.Table("po").Create(&po)
+	json.NewEncoder(w).Encode(po)
+}

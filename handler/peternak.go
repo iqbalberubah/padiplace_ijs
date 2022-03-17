@@ -23,12 +23,12 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	if result := d.DB.Table("peternak").Where("tlp_peternak = ?", body["tlp_peternak"]).First(&user); result.Error != nil {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "User tidak ditemukan"})
 	} else {
-		match := PasswordVerify(body["password1_user"].(string), user.Password1User)
-		if match {
-			json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
-		} else {
-			json.NewEncoder(w).Encode(e.ErrorResponse{404, "Password tidak sesuai"})
-		}
+		// match := PasswordVerify(body["password1_user"].(string), user.Password1User)
+		// if match {
+		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
+		// } else {
+		// 	json.NewEncoder(w).Encode(e.ErrorResponse{404, "Password tidak sesuai"})
+		// }
 	}
 }
 

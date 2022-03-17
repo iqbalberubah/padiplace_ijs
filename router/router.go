@@ -26,6 +26,7 @@ func InitializeRouter() {
 	//po
 	r.HandleFunc("/api/po", h.HistoryPO).Methods("POST")
 	r.HandleFunc("/api/po/detail", h.DetailPO).Methods("POST")
+	r.HandleFunc("/api/po/create", h.CreatePO).Methods("POST")
 
 	//balance
 	r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")
