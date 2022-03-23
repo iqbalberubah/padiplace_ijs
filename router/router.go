@@ -11,7 +11,7 @@ import (
 
 func InitializeRouter() {
 	r := mux.NewRouter()
-	//product````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+	//product
 	r.HandleFunc("/api/product", h.GetProducts).Methods("GET")
 	r.HandleFunc("/api/product/{id}", h.GetProduct).Methods("GET")
 	r.HandleFunc("/api/product", h.CreateProduct).Methods("POST")
@@ -31,6 +31,9 @@ func InitializeRouter() {
 	//balance
 	r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")
 
+	//notification
+	r.HandleFunc("/api/notification", h.GetNotification).Methods("POST")
+
 	log.Fatal(http.ListenAndServe(":8080",
 		handlers.CORS(handlers.AllowedHeaders([]string{
 			"X-Requested-With",
@@ -44,5 +47,4 @@ func InitializeRouter() {
 				"HEAD",
 				"OPTIONS"}),
 			handlers.AllowedOrigins([]string{"*"}))(r)))
-
 }
