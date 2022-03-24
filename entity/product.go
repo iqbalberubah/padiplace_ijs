@@ -15,4 +15,5 @@ type Product struct {
 	Img_3              string `json:"img_3"`
 	Img_4              string `json:"img_4"`
 	Img_5              string `json:"img_5"`
+	ImgUrl             string `json:"img_url"`
 }
