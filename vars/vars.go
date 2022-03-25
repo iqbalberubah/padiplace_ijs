@@ -9,9 +9,9 @@ import (
 var _ = godotenv.Load(".env")
 var ConnectionString = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 	"root",
-	"password",
-	"localhost",
+	"P4ssw0rd.123",
+	"34.101.123.137",
 	"3306",
-	"padiplace_ijs")
+	"padiplace_live")
 
 const AllowedCORSDomain = "http://localhost"
