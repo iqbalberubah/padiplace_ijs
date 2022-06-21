@@ -18,6 +18,13 @@ func InitializeRouter() {
 	r.HandleFunc("/api/product/{id}", h.UpdateProduct).Methods("PUT")
 	r.HandleFunc("/api/product/{id}", h.DeleteProduct).Methods("DELETE")
 
+	//file
+	r.HandleFunc("/api/file", h.GetFiles).Methods("GET")
+	r.HandleFunc("/api/file/{id}", h.GetFile).Methods("GET")
+	r.HandleFunc("/api/file", h.CreateFile).Methods("POST")
+	r.HandleFunc("/api/file/{id}", h.UpdateFile).Methods("PUT")
+	r.HandleFunc("/api/file/{id}", h.DeleteFile).Methods("DELETE")
+
 	//kios
 	r.HandleFunc("/api/login", h.Login).Methods("POST")
 	r.HandleFunc("/api/register", h.Register).Methods("POST")
