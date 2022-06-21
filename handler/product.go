@@ -39,7 +39,6 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	var product e.Product
-	// "tlp_peternak = ?", peternak.TlpPeternak
 	d.DB.Table("product").First(&product, params["id"])
 	json.NewDecoder(r.Body).Decode(&product)
 	d.DB.Table("product").Where("id_product = ?", params["id"]).Save(&product)

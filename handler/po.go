@@ -17,7 +17,7 @@ func HistoryPO(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Request body tidak sesuai"})
 		return
 	}
-	d.DB.Table("po").Where("id_peternak = ?", body["id_peternak"]).Find(&po)
+	d.DB.Table("po").Where("id_kios = ?", body["id_kios"]).Find(&po)
 	json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", po})
 }
 

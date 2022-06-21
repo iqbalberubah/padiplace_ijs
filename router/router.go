@@ -18,10 +18,10 @@ func InitializeRouter() {
 	r.HandleFunc("/api/product/{id}", h.UpdateProduct).Methods("PUT")
 	r.HandleFunc("/api/product/{id}", h.DeleteProduct).Methods("DELETE")
 
-	//peternak
+	//kios
 	r.HandleFunc("/api/login", h.Login).Methods("POST")
 	r.HandleFunc("/api/register", h.Register).Methods("POST")
-	r.HandleFunc("/api/peternak/{id}", h.UpdateTokenFcm).Methods("PUT")
+	r.HandleFunc("/api/kios/{id}", h.UpdateTokenFcm).Methods("PUT")
 
 	//po
 	r.HandleFunc("/api/po", h.HistoryPO).Methods("POST")
@@ -29,10 +29,10 @@ func InitializeRouter() {
 	r.HandleFunc("/api/po/create", h.CreatePO).Methods("POST")
 
 	//balance
-	r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")
+	// r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")
 
 	//notification
-	r.HandleFunc("/api/notification", h.GetNotification).Methods("POST")
+	// r.HandleFunc("/api/notification", h.GetNotification).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":8080",
 		handlers.CORS(handlers.AllowedHeaders([]string{
