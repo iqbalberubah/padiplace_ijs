@@ -10,4 +10,5 @@ type PO struct {
 	Total       string `json:"total"`
 	HargaSatuan string `json:"harga_satuan"`
 	IdProduct   int    `json:"id_product"`
+	IdKios      int    `json:"id_kios"`
 }
