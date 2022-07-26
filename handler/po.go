@@ -6,6 +6,8 @@ import (
 	"net/http"
 	d "padiplace_ijs/database"
 	e "padiplace_ijs/entity"
+
+	"github.com/gorilla/mux"
 )
 
 func HistoryPO(w http.ResponseWriter, r *http.Request) {
@@ -42,5 +44,15 @@ func CreatePO(w http.ResponseWriter, r *http.Request) {
 	var po e.PO
 	json.NewDecoder(r.Body).Decode(&po)
 	d.DB.Table("po").Create(&po)
+	json.NewEncoder(w).Encode(po)
+}
+
+func UpdatePO(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	var po e.PO
+	d.DB.Table("po").First(&po, params["id"])
+	json.NewDecoder(r.Body).Decode(&po)
+	d.DB.Table("po").Where("id_po = ?", params["id"]).Save(&po)
 	json.NewEncoder(w).Encode(po)
 }

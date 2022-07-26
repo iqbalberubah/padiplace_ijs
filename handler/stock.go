@@ -41,7 +41,7 @@ func UpdateStock(w http.ResponseWriter, r *http.Request) {
 	var stock e.Stock
 	d.DB.Table("stock").First(&stock, params["id"])
 	json.NewDecoder(r.Body).Decode(&stock)
-	d.DB.Table("stock").Where("id_product = ?", params["id"]).Save(&stock)
+	d.DB.Table("stock").Where("id_stock = ?", params["id"]).Save(&stock)
 	json.NewEncoder(w).Encode(stock)
 }
 

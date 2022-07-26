@@ -12,7 +12,7 @@ type PO struct {
 	IdProduct    int    `json:"id_product"`
 	IdKios       int    `json:"id_kios"`
 	IdPengiriman int    `json:"id_pengiriman"`
-	AlamatPO     int    `json:"alamat_po"`
-	Lang         int    `json:"lang"`
-	Lat          int    `json:"lat"`
+	AlamatPO     string `json:"alamat_po"`
+	Lang         string `json:"lang"`
+	Lat          string `json:"lat"`
 }
