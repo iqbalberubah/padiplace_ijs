@@ -1,12 +1,20 @@
 package entity
 
-type Kios struct {
+type User struct {
 	// gorm.Model
-	IdKios     int    `json:"id_kios"`
-	NMKios     string `json:"nm_kios"`
-	AlamatKios string `json:"alamat_kios"`
-	PhotoKios  string `json:"photo_kios"`
-	Username   string `json:"username"`
-	TlpKios    string `json:"tlp_kios"`
-	Password   string `json:"password"`
+	IdUser        int    `json:"id_user"`
+	NameUser      string `json:"name_user"`
+	EmailUser     string `json:"email_user"`
+	ImgUser       string `json:"img_user"`
+	Password1User string `json:"password1_user"`
+	IdRole        int    `json:"id_role"`
+	IsActive      int    `json:"is_active"`
+	DateCreate    string `json:"date_create"`
+	TlpUser       string `json:"tlp_user"`
+	LvlUser       string `json:"lvl_user"`
+	NpwpUser      string `json:"npwp_user"`
+	JenisUsaha    string `json:"jenis_usaha"`
+	AlamatUser    string `json:"alamat_user"`
+	NamaPrusahaan string `json:"nama_prusahaan"`
+	Username      string `json:"username"`
 }

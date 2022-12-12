@@ -44,7 +44,7 @@ func InitializeRouter() {
 	r.HandleFunc("/api/po/{id}", h.UpdatePO).Methods("PUT")
 
 	//balance
-	// r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")
+	r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")
 
 	//notification
 	// r.HandleFunc("/api/notification", h.GetNotification).Methods("POST")

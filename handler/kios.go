@@ -13,17 +13,17 @@ import (
 
 func Login(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var user e.Kios
+	var user e.User
 	var body map[string]interface{}
 	buffer, _ := ioutil.ReadAll(r.Body)
 	if err := json.Unmarshal(buffer, &body); err != nil {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Request body tidak sesuai"})
 		return
 	}
-	if result := d.DB.Table("kios").Where("tlp_kios = ?", body["tlp_kios"]).First(&user); result.Error != nil {
+	if result := d.DB.Table("user").Where("tlp_user = ?", body["tlp_user"]).First(&user); result.Error != nil {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "User tidak ditemukan"})
 	} else {
-		match := PasswordVerify(body["password"].(string), user.Password)
+		match := PasswordVerify(body["password1_user"].(string), user.Password1User)
 		if match {
 			json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
 		} else {
@@ -34,10 +34,10 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 func Register(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var kios e.Kios
+	var kios e.User
 	json.NewDecoder(r.Body).Decode(&kios)
-	if result := d.DB.Table("kios").Where("tlp_kios = ?", kios.TlpKios).First(&kios); result.Error != nil {
-		d.DB.Table("kios").Create(&kios)
+	if result := d.DB.Table("user").Where("tlp_kios = ?", kios.TlpUser).First(&kios); result.Error != nil {
+		d.DB.Table("user").Create(&kios)
 		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", kios})
 	} else {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Nomor hp sudah terdaftar"})
@@ -47,11 +47,11 @@ func Register(w http.ResponseWriter, r *http.Request) {
 func UpdateTokenFcm(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
-	var kios e.Kios
-	d.DB.Table("kios").Where("tlp_kios = ?", params["id"]).First(&kios)
-	json.NewDecoder(r.Body).Decode(&kios)
-	d.DB.Table("kios").Where("tlp_kios = ?", params["id"]).Save(&kios)
-	json.NewEncoder(w).Encode(kios)
+	var user e.User
+	d.DB.Table("user").Where("tlp_kios = ?", params["id"]).First(&user)
+	json.NewDecoder(r.Body).Decode(&user)
+	d.DB.Table("user").Where("tlp_kios = ?", params["id"]).Save(&user)
+	json.NewEncoder(w).Encode(user)
 }
 
 func PasswordVerify(password, hash string) bool {
