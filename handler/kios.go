@@ -48,9 +48,9 @@ func UpdateTokenFcm(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	var user e.User
-	d.DB.Table("user").Where("tlp_kios = ?", params["id"]).First(&user)
+	d.DB.Table("user").Where("tlp_user = ?", params["id"]).First(&user)
 	json.NewDecoder(r.Body).Decode(&user)
-	d.DB.Table("user").Where("tlp_kios = ?", params["id"]).Save(&user)
+	d.DB.Table("user").Where("tlp_user = ?", params["id"]).Save(&user)
 	json.NewEncoder(w).Encode(user)
 }
 
