@@ -19,11 +19,11 @@ func InitializeRouter() {
 	r.HandleFunc("/api/product/{id}", h.DeleteProduct).Methods("DELETE")
 
 	//stock
-	r.HandleFunc("/api/stock", h.GetStocks).Methods("GET")
-	r.HandleFunc("/api/stock/{id}", h.GetStock).Methods("GET")
-	r.HandleFunc("/api/stock", h.CreateStock).Methods("POST")
-	r.HandleFunc("/api/stock/{id}", h.UpdateStock).Methods("PUT")
-	r.HandleFunc("/api/stock/{id}", h.DeleteStock).Methods("DELETE")
+	// r.HandleFunc("/api/stock", h.GetStocks).Methods("GET")
+	// r.HandleFunc("/api/stock/{id}", h.GetStock).Methods("GET")
+	// r.HandleFunc("/api/stock", h.CreateStock).Methods("POST")
+	// r.HandleFunc("/api/stock/{id}", h.UpdateStock).Methods("PUT")
+	// r.HandleFunc("/api/stock/{id}", h.DeleteStock).Methods("DELETE")
 
 	//file
 	r.HandleFunc("/api/file", h.GetFiles).Methods("GET")
@@ -38,10 +38,10 @@ func InitializeRouter() {
 	r.HandleFunc("/api/kios/{id}", h.UpdateTokenFcm).Methods("PUT")
 
 	//po
-	r.HandleFunc("/api/po", h.HistoryPO).Methods("POST")
-	r.HandleFunc("/api/po/detail", h.DetailPO).Methods("POST")
-	r.HandleFunc("/api/po/create", h.CreatePO).Methods("POST")
-	r.HandleFunc("/api/po/{id}", h.UpdatePO).Methods("PUT")
+	r.HandleFunc("/api/transaction", h.HistoryPO).Methods("POST")
+	r.HandleFunc("/api/transaction/detail", h.DetailPO).Methods("POST")
+	r.HandleFunc("/api/transaction/create", h.CreatePO).Methods("POST")
+	r.HandleFunc("/api/transaction/{id}", h.UpdatePO).Methods("PUT")
 
 	//balance
 	r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")

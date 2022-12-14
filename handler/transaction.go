@@ -12,7 +12,7 @@ import (
 
 func HistoryPO(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var po []e.PO
+	var po []e.Transaction
 	var body map[string]interface{}
 	buffer, _ := ioutil.ReadAll(r.Body)
 	if err := json.Unmarshal(buffer, &body); err != nil {
@@ -25,7 +25,7 @@ func HistoryPO(w http.ResponseWriter, r *http.Request) {
 
 func DetailPO(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var po e.PO
+	var po e.Transaction
 	var body map[string]interface{}
 	buffer, _ := ioutil.ReadAll(r.Body)
 	if err := json.Unmarshal(buffer, &body); err != nil {
@@ -41,7 +41,7 @@ func DetailPO(w http.ResponseWriter, r *http.Request) {
 
 func CreatePO(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var po e.PO
+	var po e.Transaction
 	json.NewDecoder(r.Body).Decode(&po)
 	d.DB.Table("po").Create(&po)
 	json.NewEncoder(w).Encode(po)
@@ -50,7 +50,7 @@ func CreatePO(w http.ResponseWriter, r *http.Request) {
 func UpdatePO(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
-	var po e.PO
+	var po e.Transaction
 	d.DB.Table("po").First(&po, params["id"])
 	json.NewDecoder(r.Body).Decode(&po)
 	d.DB.Table("po").Where("id_po = ?", params["id"]).Save(&po)
