@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	d "padiplace_ijs/database"
@@ -36,7 +37,8 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var kios e.User
 	json.NewDecoder(r.Body).Decode(&kios)
-	if result := d.DB.Table("user").Where("tlp_kios = ?", kios.TlpUser).First(&kios); result.Error != nil {
+	fmt.Print(kios.TlpUser)
+	if result := d.DB.Table("user").Where("tlp_user = ?", kios.TlpUser).First(&kios); result.Error != nil {
 		d.DB.Table("user").Create(&kios)
 		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", kios})
 	} else {
