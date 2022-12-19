@@ -20,4 +20,5 @@ type Product struct {
 	KomProduct      string `json:"kom_product"`
 	TipsPengProduct string `json:"tips_peng_product"`
 	NoSku           string `json:"no_sku"`
+	NamaPrusahaan   string `json:"nama_prusahaan"`
 }
