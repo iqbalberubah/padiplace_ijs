@@ -19,7 +19,7 @@ func HistoryPO(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Request body tidak sesuai"})
 		return
 	}
-	d.DB.Table("po").Where("id_kios = ?", body["id_kios"]).Find(&po)
+	d.DB.Table("tbl_transaksi").Where("id_user = ?", body["id_user"]).Find(&po)
 	json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", po})
 }
 
@@ -32,7 +32,7 @@ func DetailPO(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Request body tidak sesuai"})
 		return
 	}
-	if result := d.DB.Table("po").Where("id_po = ?", body["id_po"]).First(&po); result.Error != nil {
+	if result := d.DB.Table("tbl_transaksi").Where("number_trx = ?", body["number_trx"]).First(&po); result.Error != nil {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "PO tidak ditemukan"})
 	} else {
 		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", po})
@@ -43,7 +43,7 @@ func CreatePO(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var po e.Transaction
 	json.NewDecoder(r.Body).Decode(&po)
-	d.DB.Table("po").Create(&po)
+	d.DB.Table("tbl_transaksi").Create(&po)
 	json.NewEncoder(w).Encode(po)
 }
 
@@ -51,8 +51,8 @@ func UpdatePO(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	var po e.Transaction
-	d.DB.Table("po").First(&po, params["id"])
+	d.DB.Table("tbl_transaksi").First(&po, params["id"])
 	json.NewDecoder(r.Body).Decode(&po)
-	d.DB.Table("po").Where("id_po = ?", params["id"]).Save(&po)
+	d.DB.Table("tbl_transaksi").Where("number_trx = ?", params["id"]).Save(&po)
 	json.NewEncoder(w).Encode(po)
 }

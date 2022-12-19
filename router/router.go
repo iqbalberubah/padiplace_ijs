@@ -35,7 +35,7 @@ func InitializeRouter() {
 	//kios
 	r.HandleFunc("/api/login", h.Login).Methods("POST")
 	r.HandleFunc("/api/register", h.Register).Methods("POST")
-	r.HandleFunc("/api/kios/{id}", h.UpdateTokenFcm).Methods("PUT")
+	r.HandleFunc("/api/user/{id}", h.UpdateTokenFcm).Methods("PUT")
 
 	//po
 	r.HandleFunc("/api/transaction", h.HistoryPO).Methods("POST")
