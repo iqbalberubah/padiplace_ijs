@@ -11,8 +11,7 @@ import (
 
 func GetProducts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var products []e.Product
-	// d.DB.Table("tbl_product").Find(&products)
+	var products []e.ProductList
 	d.DB.Table("tbl_product").Select("tbl_product.id_product, tbl_product.nm_product, tbl_product.harga_product, tbl_product.stock, tbl_product.type_product, tbl_product.satuan_product, tbl_product.des_product, tbl_product.foto, tbl_product.foto2, tbl_product.foto3, tbl_product.foto4, tbl_product.foto5, tbl_product.foto6, tbl_product.status, tbl_product.id_user, tbl_product.tgl_date, tbl_product.kom_product, tbl_product.tips_peng_product, tbl_product.no_sku, user.nama_prusahaan").Joins("left join user on user.id_user = tbl_product.id_user").Find(&products)
 	json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", products})
 

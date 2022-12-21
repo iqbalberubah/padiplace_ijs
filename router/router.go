@@ -38,10 +38,10 @@ func InitializeRouter() {
 	r.HandleFunc("/api/user/{id}", h.UpdateTokenFcm).Methods("PUT")
 
 	//po
-	r.HandleFunc("/api/transaction", h.HistoryPO).Methods("POST")
-	r.HandleFunc("/api/transaction/detail", h.DetailPO).Methods("POST")
-	r.HandleFunc("/api/transaction/create", h.CreatePO).Methods("POST")
-	r.HandleFunc("/api/transaction/{id}", h.UpdatePO).Methods("PUT")
+	r.HandleFunc("/api/transaction", h.TransactionHistory).Methods("POST")
+	r.HandleFunc("/api/transaction/detail", h.TransactionDetail).Methods("POST")
+	r.HandleFunc("/api/transaction/create", h.CreateTransaction).Methods("POST")
+	r.HandleFunc("/api/transaction/{id}", h.UpdateTransaction).Methods("PUT")
 
 	//balance
 	r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")
