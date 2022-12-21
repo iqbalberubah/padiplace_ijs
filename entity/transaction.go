@@ -11,7 +11,7 @@ type Transaction struct {
 	IdUser          int    `json:"id_user"`
 	TypeTrk         int    `json:"type_trk"`
 	StatusTransaksi int    `json:"status_transaksi"`
-	JumlahTrx       int    `json:"jumlah_trx"`
+	JumlahTrx       string `json:"jumlah_trx"`
 }
 
 type TransactionHistory struct {
@@ -26,5 +26,5 @@ type TransactionHistory struct {
 	TypeTrk         int    `json:"type_trk"`
 	StatusTransaksi int    `json:"status_transaksi"`
 	NmProduct       string `json:"nm_product"`
-	JumlahTrx       int    `json:"jumlah_trx"`
+	JumlahTrx       string `json:"jumlah_trx"`
 }
