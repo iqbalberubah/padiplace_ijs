@@ -56,6 +56,14 @@ func UpdateTokenFcm(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(user)
 }
 
+func GetUsers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var users []e.User
+	d.DB.Table("user").Find(&users)
+	json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", users})
+
+}
+
 func PasswordVerify(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
