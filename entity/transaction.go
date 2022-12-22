@@ -25,6 +25,6 @@ type TransactionHistory struct {
 	IdUser          int    `json:"id_user"`
 	TypeTrk         int    `json:"type_trk"`
 	StatusTransaksi int    `json:"status_transaksi"`
-	NmProduct       string `json:"nm_product"`
 	JumlahTrx       string `json:"jumlah_trx"`
+	Foto            string `json:"foto"`
 }
