@@ -11,6 +11,9 @@ type User struct {
 	IsActive      int    `json:"is_active"`
 	DateCreate    string `json:"date_create"`
 	TlpUser       string `json:"tlp_user"`
+	LvlUser       string `json:"lvl_user"`
+	NpwpUser      string `json:"npwp_user"`
+	JenisUsaha    string `json:"jenis_usaha"`
 	AlamatUser    string `json:"alamat_user"`
 	NamaPrusahaan string `json:"nama_prusahaan"`
 	Username      string `json:"username"`
