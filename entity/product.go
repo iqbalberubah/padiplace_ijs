@@ -20,6 +20,7 @@ type Product struct {
 	KomProduct      string `json:"kom_product"`
 	TipsPengProduct string `json:"tips_peng_product"`
 	NoSku           string `json:"no_sku"`
+	PublishS        int    `json:"publish_s"`
 }
 
 type ProductList struct {
@@ -42,5 +43,6 @@ type ProductList struct {
 	KomProduct      string `json:"kom_product"`
 	TipsPengProduct string `json:"tips_peng_product"`
 	NoSku           string `json:"no_sku"`
+	PublishS        int    `json:"publish_s"`
 	NamaPrusahaan   string `json:"nama_prusahaan"`
 }
