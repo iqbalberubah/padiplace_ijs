@@ -19,7 +19,7 @@ func TransactionHistory(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Request body tidak sesuai"})
 		return
 	}
-	d.DB.Table("tbl_transaksi").Select("tbl_transaksi.id_transaksi, tbl_transaksi.date, tbl_transaksi.keterangan, tbl_transaksi.balance, tbl_transaksi.id_product, tbl_transaksi.id_user, tbl_transaksi.type_trk, tbl_transaksi.status_transaksi, tbl_transaksi.number_trx, tbl_transaksi.jumlah_trx, tbl_product.nm_product, tbl_product.foto").Joins("left join tbl_product on tbl_product.id_product = tbl_transaksi.id_product").Where("tbl_transaksi.id_user = ?", body["id_user"]).Find(&transaction)
+	d.DB.Table("tbl_transaksi").Select("tbl_transaksi.id_transaksi, tbl_transaksi.date, tbl_transaksi.keterangan, tbl_transaksi.balance, tbl_transaksi.id_product, tbl_transaksi.id_user, tbl_transaksi.type_trk, tbl_transaksi.status_transaksi, tbl_transaksi.number_trx, tbl_transaksi.jumlah_trx, tbl_product.nm_product, tbl_product.foto, tbl_product.type_product").Joins("left join tbl_product on tbl_product.id_product = tbl_transaksi.id_product").Where("tbl_transaksi.id_user = ?", body["id_user"]).Find(&transaction)
 	json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", transaction})
 }
 
