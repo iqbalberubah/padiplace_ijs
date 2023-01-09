@@ -40,6 +40,7 @@ func InitializeRouter() {
 
 	//po
 	r.HandleFunc("/api/transaction", h.TransactionHistory).Methods("POST")
+	r.HandleFunc("/api/transaction/all", h.GetAll).Methods("GET")
 	r.HandleFunc("/api/transaction/detail", h.TransactionDetail).Methods("POST")
 	r.HandleFunc("/api/transaction/create", h.CreateTransaction).Methods("POST")
 	r.HandleFunc("/api/transaction/{id}", h.UpdateTransaction).Methods("PUT")

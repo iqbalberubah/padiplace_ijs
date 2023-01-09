@@ -23,6 +23,14 @@ func TransactionHistory(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", transaction})
 }
 
+func GetAll(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var transaction []e.TransactionHistory
+	d.DB.Table("tbl_transaksi").Select("tbl_transaksi.id_transaksi, tbl_transaksi.date, tbl_transaksi.keterangan, tbl_transaksi.balance, tbl_transaksi.id_product, tbl_transaksi.id_user, tbl_transaksi.type_trk, tbl_transaksi.status_transaksi, tbl_transaksi.number_trx, tbl_transaksi.jumlah_trx, tbl_product.nm_product, tbl_product.foto").Joins("left join tbl_product on tbl_product.id_product = tbl_transaksi.id_product").Find(&transaction)
+	json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", transaction})
+
+}
+
 func TransactionDetail(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var transaction e.Transaction
