@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	d "padiplace_ijs/database"
@@ -37,12 +36,12 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var user e.User
 	json.NewDecoder(r.Body).Decode(&user)
-	fmt.Print(user.TlpUser)
 	if result := d.DB.Table("user").Where("tlp_user = ?", user.TlpUser).First(&user); result.Error != nil {
 		d.DB.Table("user").Create(&user)
+		d.DB.Table("user").Where("tlp_user = ?", user.TlpUser).First(&user)
 		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
 	} else {
-		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Nomor hp sudah terdaftar"})
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "No. Handphone sudah terdaftar"})
 	}
 }
 
