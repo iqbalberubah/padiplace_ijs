@@ -37,6 +37,7 @@ func InitializeRouter() {
 	r.HandleFunc("/api/register", h.Register).Methods("POST")
 	r.HandleFunc("/api/user/{id}", h.UpdateTokenFcm).Methods("PUT")
 	r.HandleFunc("/api/user", h.GetUsers).Methods("GET")
+	r.HandleFunc("/api/detail", h.Detail).Methods("POST")
 
 	//po
 	r.HandleFunc("/api/transaction", h.TransactionHistory).Methods("POST")

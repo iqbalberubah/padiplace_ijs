@@ -20,7 +20,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Request body tidak sesuai"})
 		return
 	}
-	if result := d.DB.Table("user").Where("username = ?", body["username"]).First(&user); result.Error != nil {
+	if result := d.DB.Table("user").Where("username = ? OR tlp_user = ?", body["username"], body["tlp_user"]).First(&user); result.Error != nil {
 		json.NewEncoder(w).Encode(e.ErrorResponse{404, "User tidak ditemukan"})
 	} else {
 		match := PasswordVerify(body["password1_user"].(string), user.Password1User)
@@ -29,6 +29,22 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		} else {
 			json.NewEncoder(w).Encode(e.ErrorResponse{404, "Password tidak sesuai"})
 		}
+	}
+}
+
+func Detail(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var user e.User
+	var body map[string]interface{}
+	buffer, _ := ioutil.ReadAll(r.Body)
+	if err := json.Unmarshal(buffer, &body); err != nil {
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "Request body tidak sesuai"})
+		return
+	}
+	if result := d.DB.Table("user").Where("tlp_user = ?", body["tlp_user"]).First(&user); result.Error != nil {
+		json.NewEncoder(w).Encode(e.ErrorResponse{404, "User tidak ditemukan"})
+	} else {
+		json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
 	}
 }
 
