@@ -51,7 +51,7 @@ func CreateTransaction(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var transaction e.Transaction
 	json.NewDecoder(r.Body).Decode(&transaction)
-	d.DB.Table("tbl_transaksi").Create(&transaction)
+	d.DB.Table("tbl_transaksi").Create(&transaction).First(&transaction)
 	json.NewEncoder(w).Encode(transaction)
 }
 

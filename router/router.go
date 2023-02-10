@@ -39,12 +39,15 @@ func InitializeRouter() {
 	r.HandleFunc("/api/user", h.GetUsers).Methods("GET")
 	r.HandleFunc("/api/detail", h.Detail).Methods("POST")
 
-	//po
+	//transaction
 	r.HandleFunc("/api/transaction", h.TransactionHistory).Methods("POST")
 	r.HandleFunc("/api/transaction/all", h.GetAll).Methods("GET")
 	r.HandleFunc("/api/transaction/detail", h.TransactionDetail).Methods("POST")
 	r.HandleFunc("/api/transaction/create", h.CreateTransaction).Methods("POST")
 	r.HandleFunc("/api/transaction/{id}", h.UpdateTransaction).Methods("PUT")
+
+	//transaction detail
+	r.HandleFunc("/api/transaction/detail/create", h.CreateTransactionDetail).Methods("POST")
 
 	//balance
 	r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")

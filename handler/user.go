@@ -58,8 +58,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	json.NewDecoder(r.Body).Decode(&user)
 	if result := d.DB.Table("user").Where("tlp_user = ?", user.TlpUser).First(&user); result.Error != nil {
 		if result := d.DB.Table("user").Where("email_user = ?", user.EmailUser).First(&user); result.Error != nil {
-			d.DB.Table("user").Create(&user)
-			d.DB.Table("user").Where("tlp_user = ?", user.TlpUser).First(&user)
+			d.DB.Table("user").Create(&user).First(&user)
 			json.NewEncoder(w).Encode(e.SuccesResponse{0, "Succes", user})
 		} else {
 			json.NewEncoder(w).Encode(e.ErrorResponse{404, "Email sudah terdaftar"})
