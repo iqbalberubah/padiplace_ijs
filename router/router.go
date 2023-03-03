@@ -47,7 +47,7 @@ func InitializeRouter() {
 	r.HandleFunc("/api/transaction/{id}", h.UpdateTransaction).Methods("PUT")
 
 	//transaction detail
-	r.HandleFunc("/api/transaction/detail/create", h.CreateTransactionDetail).Methods("POST")
+	r.HandleFunc("/api/transaction/invoice/create", h.CreateTransactionInvoice).Methods("POST")
 
 	//balance
 	r.HandleFunc("/api/balance", h.GetBalance).Methods("POST")

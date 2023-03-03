@@ -15,6 +15,10 @@ type Transaction struct {
 	TrxType2         int    `json:"trx_type2"`
 	StatusPembayaran int    `json:"status_pembayaran"`
 	SellerId         int    `json:"seller_id"`
+	FotoProduct      string `json:"foto_product"`
+	NmPro            string `json:"nm_pro"`
+	SatuanProduct    string `json:"satuan_product"`
+	HargaSatuan1     string `json:"harga_satuan1"`
 }
 
 type TransactionHistory struct {
