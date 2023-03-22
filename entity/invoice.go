@@ -11,6 +11,7 @@ type TransactionDetail struct {
 	TotalPemesanan  string `json:"total_pemesanan"`
 	JumlahPro       string `json:"jumlah_pro"`
 	StatusTransaksi int    `json:"status_transaksi"`
+	TrxType2        int    `json:"trx_type2"`
 	Nomerresi       string `json:"nomerresi"`
 	Pengiriman      string `json:"pengiriman"`
 }

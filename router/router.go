@@ -55,6 +55,9 @@ func InitializeRouter() {
 	//notification
 	// r.HandleFunc("/api/notification", h.GetNotification).Methods("POST")
 
+	//BRI
+	r.HandleFunc("/api/gettoken", h.GetToken).Methods("POST")
+
 	log.Fatal(http.ListenAndServe(":8080",
 		handlers.CORS(handlers.AllowedHeaders([]string{
 			"X-Requested-With",
